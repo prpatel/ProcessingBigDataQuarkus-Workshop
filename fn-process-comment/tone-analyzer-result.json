@@ -1,0 +1,60 @@
+{
+  "activationId": "2d0c9563ff80403f8c9563ff80903fd0",
+  "annotations": [
+    {
+      "key": "path",
+      "value": "pratik.r.patel@gmail.com_dev/tone-analyzer-v3/tone"
+    },
+    {
+      "key": "waitTime",
+      "value": 25
+    },
+    {
+      "key": "kind",
+      "value": "nodejs:8"
+    },
+    {
+      "key": "timeout",
+      "value": false
+    },
+    {
+      "key": "limits",
+      "value": {
+        "concurrency": 1,
+        "logs": 10,
+        "memory": 256,
+        "timeout": 60000
+      }
+    }
+  ],
+  "duration": 1146,
+  "end": 1594854181055,
+  "logs": [],
+  "name": "tone",
+  "namespace": "pratik.r.patel@gmail.com_dev",
+  "publish": false,
+  "response": {
+    "result": {
+      "document_tone": {
+        "tones": [
+          {
+            "score": 0.645686,
+            "tone_id": "joy",
+            "tone_name": "Joy"
+          },
+          {
+            "score": 0.91961,
+            "tone_id": "tentative",
+            "tone_name": "Tentative"
+          }
+        ]
+      }
+    },
+    "size": 146,
+    "status": "success",
+    "success": true
+  },
+  "start": 1594854179909,
+  "subject": "pratik.r.patel@gmail.com",
+  "version": "0.0.3"
+}

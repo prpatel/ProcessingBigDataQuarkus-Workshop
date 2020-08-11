@@ -1,0 +1,27 @@
+{
+  "doc": {
+    "ratings": {
+      "service": 5.0,
+      "cleanliness": 5.0,
+      "overall": 5.0,
+      "value": 5.0,
+      "location": 4.0,
+      "sleep_quality": 5.0,
+      "rooms": 5.0
+    },
+    "title": "Don't miss this great place!",
+    "text": "I've stayed at 4 and 5 star hotels all over Manhattan. Over the past year, however, I have returned each time to the Eventi. Wonderful staff, beautiful hotel, incredibly comfortable rooms and for my needs terrific location.",
+    "author": {
+      "username": "DrTiller",
+      "num_reviews": 1,
+      "id": "10BE07B397D5814F9ECCC875B1BA96C9",
+      "location": "Miami Beach, Florida"
+    },
+    "date_stayed": "December 2012",
+    "offering_id": 1456560,
+    "num_helpful_votes": 0,
+    "date": "December 19, 2012",
+    "id": 147735177,
+    "via_mobile": false
+  }
+}
