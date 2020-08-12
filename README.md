@@ -24,7 +24,7 @@ Basic knowledge of Java and command line operation is required. The Skill Networ
 Note that the above environment has a Quarkus basic lab that you can do to get familiar with Quarkus!
 
 # Get the source code and template project
-
+We'll be working in the Skill Network Lab environment so you don't have to set everything up on your computer. 
 Open a new terminal if it isn't open already:
 
 `Terminal -> New Terminal`
@@ -47,8 +47,7 @@ cd ProcessingBigDataQuarkus-Workshop/
 # IBM Cloud account and login
 Your presenter will provide you with a URL for creating an IBM Cloud Function account if you don't already have one.
 
-Make sure you're logged into the ibmcloud cli! Run these commands, for the 3rd command,
-select #1 option:
+Make sure you're logged into the ibmcloud cli! Run these commands:
 ```
 ibmcloud logout
 ibmcloud login -u YOUR@EMAIL.ADDRESS
@@ -56,8 +55,14 @@ ibmcloud target --cf
 ```
 {: codeblock}
 
+We'll need to make sure we have targetted the right namespace, run this and select #1 option:
+```
+ibmcloud target --cf
+```
+{: codeblock}
+
 # Create OpenWhisk package for our app
-Run this command from the terminal:
+To create a new package to hold our application's Cloud Functions, run this command from the terminal:
 ```
 ibmcloud fn package create bigdata
 ```
@@ -79,7 +84,8 @@ mvn quarkus:dev
 ```
 {: codeblock}
 
-Copy the contents of this file: single-line-test.json and paste it to the terminal to see the output of the program.
+Copy the contents of this file: single-line-test.json and paste it to the terminal where you ran 
+`mvn quarkus:dev` to see the output of the program.
 This is "good" input data and it will return the JSON you passed in, embedded inside a "doc" element.
 
 Then, copy this file: single-line-test-bad.json and paste it to the terminal to see the output.
@@ -105,7 +111,7 @@ mvn test
 >in the next section when we deploy it into OpenWhisk / IBM Cloud Functions. 
 >
 > OpenWhisk provides routing, HTTP handling, etc when you write Cloud Functions with it -
-> we _can_ write it using standard REST style, but we want to be lean n' mean to get the best
+> we *can* write it using standard REST style, but we want to be lean n' mean to get the best
 > performance and response time! We have a video presentation recorded 
 >[here](https://developer.ibm.com/events/lightweight-serverless-cloud-functions-with-java-and-quarkus-part-1/) 
 >so you can dive into this topic if you like.  
@@ -254,14 +260,28 @@ ibmcloud fn action invoke bigdata/validateAndAdd --result --param-file sample-in
 We can quickly check to see if there's anything there by running the list-document built-in function again:
 `ibmcloud fn action invoke /_/hotelreviewsdbpackage/list-documents --result`
 
+We've included another file named `sample-input2.json` - try inserting that into the database too.
+
+## Extra Credit
+Web enable the `validateAndAdd` Cloud Function Sequence, and POST the `sample-input.json` to the HTTP endpoint!
+
+Hint: `ibmcloud fn action create bigdata/validateAndAdd --web true`
+
 # Reading from our database
 
 Let's read our data from the command line. You'll find a file called dbparams.json that you can use to get not just the data IDs, but the actual data:
-
 ```
 ibmcloud fn action invoke /_/hotelreviewsdbpackage/list-documents --result --param-file dbparams.json 
 ```
 {: codeblock}
+
+Now we can fetch the contents a specfic record in our DB using this command (substitute the ID from the previous command):
+```
+ibmcloud fn action invoke --result hotelreviewsdbpackage/read -p id REPLACE_WITH_ID 
+```
+{: codeblock}
+
+## Access data using HTTP
 
 How can we access this from a HTTP endpoint? We will create a new sequence using the `list-documents` along with a 
 simple Cloud Function that passes it the params in that dbparams.json file.
